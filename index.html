@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marshall Rawson — Fearless Conservative for Florida State House District 10</title>
+<meta name="description" content="Marshall Rawson is a fearless conservative running for Florida State House District 10. Pro-life, pro-gun, pro-agriculture, and ready to fight for you in Tallahassee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-dark: #0f1a2e;
+  --navy-light: #243455;
+  --red: #c41e3a;
+  --red-dark: #a01830;
+  --red-glow: rgba(196, 30, 58, 0.4);
+  --white: #ffffff;
+  --off-white: #f0f2f5;
+  --gold: #d4a853;
+  --text-light: rgba(255,255,255,0.85);
+  --text-muted: rgba(255,255,255,0.6);
+  --glass-bg: rgba(26, 39, 68, 0.75);
+  --glass-border: rgba(255,255,255,0.12);
+  --transition: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--white);
+  background: var(--navy-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== PRELOADER ===== */
+#preloader {
+  position: fixed; inset: 0; z-index: 10000;
+  background: var(--navy-dark);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#preloader img { width: 220px; animation: preloaderPulse 1.2s ease-in-out infinite; }
+#preloader .loader-bar {
+  width: 200px; height: 3px; background: rgba(255,255,255,0.1);
+  border-radius: 3px; margin-top: 30px; overflow: hidden;
+}
+#preloader .loader-bar::after {
+  content: ''; display: block; width: 40%; height: 100%;
+  background: var(--red); border-radius: 3px;
+  animation: loaderSlide 1s ease-in-out infinite;
+}
+@keyframes preloaderPulse { 0%,100% { opacity: 0.6; transform: scale(0.97); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes loaderSlide { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+
+/* ===== FLOATING SHAPES ===== */
+.floating-shapes {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.floating-shapes .shape {
+  position: absolute; border-radius: 50%; opacity: 0.03;
+}
+.shape-1 { width: 600px; height: 600px; background: var(--red); top: -200px; right: -200px; animation: floatA 20s ease-in-out infinite; }
+.shape-2 { width: 400px; height: 400px; background: var(--gold); bottom: -100px; left: -100px; animation: floatB 25s ease-in-out infinite; }
+.shape-3 { width: 300px; height: 300px; background: var(--white); top: 50%; left: 50%; animation: floatC 18s ease-in-out infinite; }
+@keyframes floatA { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(-80px, 60px) rotate(180deg); } }
+@keyframes floatB { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(60px, -80px) rotate(-180deg); } }
+@keyframes floatC { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px, 40px) scale(1.2); } }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 40px;
+  transition: all 0.4s var(--transition);
+  background: transparent;
+}
+.navbar.scrolled {
+  padding: 12px 40px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.nav-inner {
+  max-width: 1300px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 45px; transition: height 0.4s var(--transition); }
+.navbar.scrolled .nav-logo img { height: 36px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  color: var(--white); text-decoration: none;
+  font-family: 'Oswald', sans-serif; font-weight: 400;
+  font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase;
+  position: relative; transition: color 0.3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--red); transition: width 0.3s var(--transition);
+}
+.nav-links a:hover { color: var(--red); }
+.nav-links a:hover::after { width: 100%; }
+.nav-donate {
+  background: var(--red); color: var(--white) !important;
+  padding: 10px 28px; border-radius: 4px;
+  font-weight: 600 !important; letter-spacing: 2px;
+  transition: all 0.3s var(--transition) !important;
+  box-shadow: 0 4px 15px var(--red-glow);
+}
+.nav-donate::after { display: none !important; }
+.nav-donate:hover { background: var(--red-dark) !important; transform: translateY(-2px); box-shadow: 0 6px 25px var(--red-glow); }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: none; border: none; padding: 5px; }
+.hamburger span { display: block; width: 28px; height: 2px; background: var(--white); transition: all 0.3s; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://marshallrawsoncampaign.com/images/IMG_4266.jpg') center center / cover no-repeat;
+  transform: scale(1.1);
+  will-change: transform;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(15,26,46,0.88) 0%, rgba(26,39,68,0.75) 40%, rgba(196,30,58,0.15) 100%);
+}
+.hero-particles { position: absolute; inset: 0; overflow: hidden; }
+.particle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: rgba(255,255,255,0.15);
+}
+.hero-content {
+  position: relative; z-index: 2; text-align: center;
+  padding: 0 20px; max-width: 1000px;
+}
+.hero-tagline {
+  font-family: 'Oswald', sans-serif; font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.3rem); letter-spacing: 6px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 20px;
+  opacity: 0; transform: translateY(30px);
+}
+.hero-name {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(3rem, 8vw, 7rem); line-height: 0.95;
+  letter-spacing: -2px; margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--white) 0%, rgba(255,255,255,0.8) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-name span {
+  display: inline-block; opacity: 0; transform: translateY(60px) rotateX(-15deg);
+}
+.hero-subtitle {
+  font-family: 'Oswald', sans-serif; font-weight: 400;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem); letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 40px;
+  opacity: 0; transform: translateY(30px);
+}
+.hero-cta {
+  display: inline-flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+  opacity: 0; transform: translateY(30px);
+}
+.btn {
+  display: inline-block; padding: 16px 42px; font-family: 'Oswald', sans-serif;
+  font-size: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; border-radius: 4px; transition: all 0.3s var(--transition);
+  cursor: pointer; border: none;
+}
+.btn-primary {
+  background: var(--red); color: var(--white);
+  box-shadow: 0 4px 20px var(--red-glow);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--red-glow); }
+.btn-outline {
+  background: transparent; color: var(--white);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover { border-color: var(--white); transform: translateY(-3px); }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  z-index: 2; animation: scrollBounce 2s ease-in-out infinite;
+}
+.hero-scroll svg { width: 30px; height: 30px; stroke: rgba(255,255,255,0.5); fill: none; stroke-width: 2; }
+@keyframes scrollBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+
+/* ===== SECTION BASICS ===== */
+section { position: relative; z-index: 1; }
+.section-padding { padding: 120px 40px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: 'Oswald', sans-serif; font-weight: 400;
+  font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 24px;
+}
+.section-divider {
+  width: 60px; height: 3px; background: var(--red); margin-bottom: 40px;
+}
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ===== ABOUT ===== */
+.about { background: var(--off-white); color: var(--navy); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text p { font-size: 1.05rem; line-height: 1.8; color: #3a4255; margin-bottom: 20px; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+.stat-card {
+  background: var(--white); padding: 28px; border-radius: 8px;
+  text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s var(--transition), box-shadow 0.3s;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.stat-number {
+  font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700;
+  color: var(--red); line-height: 1;
+}
+.stat-label {
+  font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 2px;
+  text-transform: uppercase; color: #6b7280; margin-top: 8px;
+}
+
+/* ===== WHY I'M RUNNING ===== */
+.why-running { background: var(--navy); }
+.why-item {
+  display: grid; grid-template-columns: 60px 1fr; gap: 30px;
+  padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.why-item:last-child { border-bottom: none; }
+.why-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(196,30,58,0.12); display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.why-text { font-size: 1.05rem; line-height: 1.9; color: var(--text-light); }
+.why-signature {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.4rem; color: var(--gold); margin-top: 40px; text-align: right;
+}
+
+/* ===== ISSUES ===== */
+.issues { background: var(--off-white); color: var(--navy); }
+.issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.issue-card {
+  background: var(--white); border-radius: 12px; padding: 40px 30px;
+  text-align: center; position: relative; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: all 0.4s var(--transition); cursor: default;
+}
+.issue-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--red); transform: scaleX(0); transition: transform 0.4s var(--transition);
+}
+.issue-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+.issue-card:hover::before { transform: scaleX(1); }
+.issue-icon { font-size: 2.8rem; margin-bottom: 20px; display: block; }
+.issue-name {
+  font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px;
+}
+.issue-desc { font-size: 0.92rem; line-height: 1.7; color: #5a6275; }
+
+/* ===== ENDORSEMENTS ===== */
+.endorsements { background: var(--navy-dark); }
+.endorsements-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;
+}
+.endorsement-card {
+  border-radius: 12px; overflow: hidden; position: relative;
+  background: var(--navy-light); box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s var(--transition);
+}
+.endorsement-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+.endorsement-card img {
+  width: 100%; height: 200px; object-fit: cover; display: block;
+  transition: transform 0.5s var(--transition);
+}
+.endorsement-card:hover img { transform: scale(1.05); }
+.endorsement-info {
+  padding: 20px; text-align: center;
+}
+.endorsement-name {
+  font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* ===== CTA BANNER ===== */
+.cta-banner {
+  position: relative; padding: 120px 40px; text-align: center; overflow: hidden;
+  background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 50%, #d4344f 100%);
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('https://marshallrawsoncampaign.com/images/IMG_4266.jpg') center / cover;
+  opacity: 0.08;
+}
+.cta-quote {
+  position: relative; z-index: 1;
+  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 700; font-style: italic; line-height: 1.4;
+  max-width: 800px; margin: 0 auto 40px;
+}
+.cta-banner .btn-primary {
+  background: var(--white); color: var(--red);
+  font-size: 1.1rem; padding: 18px 50px;
+  animation: pulse 2s ease-in-out infinite;
+  position: relative; z-index: 1;
+}
+.cta-banner .btn-primary:hover { transform: translateY(-3px) scale(1.02); }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+  50% { box-shadow: 0 0 0 20px rgba(255,255,255,0); }
+}
+
+/* ===== CONTACT ===== */
+.contact { background: var(--off-white); color: var(--navy); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.contact-item { display: flex; gap: 16px; margin-bottom: 32px; }
+.contact-icon {
+  width: 50px; height: 50px; border-radius: 12px; flex-shrink: 0;
+  background: var(--navy); display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.contact-label {
+  font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 400;
+  letter-spacing: 2px; text-transform: uppercase; color: #6b7280; margin-bottom: 4px;
+}
+.contact-value { font-size: 1.05rem; color: var(--navy); line-height: 1.5; }
+.contact-value a { color: var(--red); text-decoration: none; }
+.contact-value a:hover { text-decoration: underline; }
+.signup-box {
+  background: var(--navy); border-radius: 16px; padding: 50px 40px;
+  color: var(--white); text-align: center;
+}
+.signup-box h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px;
+}
+.signup-box p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; }
+.signup-box .btn { width: 100%; text-align: center; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--navy-dark); padding: 60px 40px 30px; text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-logo { height: 50px; margin-bottom: 24px; opacity: 0.8; }
+.footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+.footer-social a {
+  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08); color: var(--white); text-decoration: none;
+  font-size: 1.1rem; transition: all 0.3s;
+}
+.footer-social a:hover { background: var(--red); transform: translateY(-2px); }
+.footer-disclaimer {
+  font-size: 0.82rem; color: var(--text-muted); max-width: 500px; margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .nav-links { 
+    position: fixed; top: 0; right: -100%; width: 80%; max-width: 360px; height: 100vh;
+    background: var(--navy-dark); flex-direction: column; justify-content: center;
+    padding: 40px; gap: 28px; transition: right 0.4s var(--transition);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+  }
+  .nav-links.open { right: 0; }
+  .hamburger { display: flex; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .why-item { grid-template-columns: 1fr; gap: 16px; }
+  .section-padding { padding: 80px 24px; }
+  .navbar { padding: 16px 20px; }
+  .navbar.scrolled { padding: 12px 20px; }
+  .endorsements-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+@media (max-width: 500px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .hero-name { letter-spacing: -1px; }
+  .issues-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== MOBILE NAV OVERLAY ===== */
+.nav-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998;
+  opacity: 0; visibility: hidden; transition: all 0.3s;
+}
+.nav-overlay.open { opacity: 1; visibility: visible; }
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <img src="https://marshallrawsoncampaign.com/images/marshall-rawson-logo-red-reversed.png" alt="Marshall Rawson">
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Floating Shapes -->
+<div class="floating-shapes">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="https://marshallrawsoncampaign.com/images/marshall-rawson-logo-red-reversed-no.png" alt="Marshall Rawson">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#why" onclick="closeNav()">Why I'm Running</a></li>
+      <li><a href="#issues" onclick="closeNav()">Issues</a></li>
+      <li><a href="#endorsements" onclick="closeNav()">Endorsements</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      <li><a href="https://secure.anedot.com/marshall-rawson-campaign/donate" target="_blank" class="nav-donate">Donate</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="hero-content">
+    <div class="hero-tagline" id="heroTagline">Fearless Conservative</div>
+    <h1 class="hero-name" id="heroName">
+      <span>M</span><span>A</span><span>R</span><span>S</span><span>H</span><span>A</span><span>L</span><span>L</span><span>&nbsp;</span><span>R</span><span>A</span><span>W</span><span>S</span><span>O</span><span>N</span>
+    </h1>
+    <p class="hero-subtitle" id="heroSubtitle">For Florida State House &bull; District 10</p>
+    <div class="hero-cta" id="heroCta">
+      <a href="https://secure.anedot.com/marshall-rawson-campaign/donate" target="_blank" class="btn btn-primary">Donate Now</a>
+      <a href="#why" class="btn btn-outline">Why I'm Running</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about section-padding" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="section-label">About Marshall</div>
+        <h2 class="section-title" style="color: var(--navy);">A Fighter for<br>North Florida</h2>
+        <div class="section-divider"></div>
+        <div class="about-text">
+          <p>Marshall Rawson is a proud North Florida native, a husband, father of five, and a fearless conservative fighter. A graduate of the University of Florida's Levin College of Law, Marshall has dedicated his career and life to defending the values that make Florida great.</p>
+          <p>As president of the Young Americans for Liberty chapter in college, Marshall championed Second Amendment rights, limited government, and constitutional principles long before entering the political arena. He brings the same tenacity to his campaign for the Florida State House.</p>
+          <p>Marshall is the only candidate in this race who has physically defended our nation at the Texas-Mexico border, standing shoulder to shoulder with those protecting American sovereignty. He has fought to preserve Florida's heritage — defending historic veterans' monuments in Lake City and Gainesville, and the Ten Commandments monument in Starke.</p>
+          <p>A committed community leader, Marshall has worked directly with local officials to remove inappropriate materials from county libraries and stands firmly against the radical ideologies threatening our children's education. His roots run deep in North Florida, and he's ready to take that fight to Tallahassee.</p>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" data-target="5">0</div>
+            <div class="stat-label">Children</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">UF</div>
+            <div class="stat-label">Law Graduate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24+</div>
+            <div class="stat-label">Endorsements</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">D10</div>
+            <div class="stat-label">District Fighter</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why I'm Running -->
+<section class="why-running section-padding" id="why">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">My Mission</div>
+      <h2 class="section-title">Why I'm Running</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">🌿</div>
+      <div class="why-text">I am running because every day, the Florida that I love loses another 800-1000 acres of good greenspace and agriculture lands to soulless suburban development and shopping malls. I will be Florida's greatest advocate when it comes to conservation and Florida Agriculture.</div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">💰</div>
+      <div class="why-text">I am running because while government makes room for the whole world to relocate here, that same government(s) wants you to pay for it by increasing your taxes, further regulating you and your business and inevitably increasing crime and congestion. Here, I will be your Florida First Candidate.</div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">📚</div>
+      <div class="why-text">I am running because I am sick of seeing local government take the fruits of our labor, by taxing us, so that they can fund county libraries and education curriculums that push sick, woke, anti-Western and anti-Christian propaganda on our youth. I have worked with my county commissioner to remove such propaganda from the children's tables at our county library and I will continue that fight.</div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">❤️</div>
+      <div class="why-text">I am running because the most innocent and the most vulnerable of our society desperately need equal protection in Tallahassee. I will staunchly defend life as I did against last year's proposed Amendment 4.</div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">🔫</div>
+      <div class="why-text">I am running because Tallahassee has repetitively failed to defend and restore our second amendment rights even while those same representatives look you in the eye and claim to be such a defender. I will immediately work to repeal the prohibition on 18-20 years old from buying a firearm as well as the prohibition where and in what manner a law-abiding adult caries. As the Young American for Liberty president in college I championed these issues, and I will in Tallahassee.</div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">⛪</div>
+      <div class="why-text">I am running because Tallahassee desperately needs the courage to stand up against the radical left and their removal of our historic veteran's monuments and 10 Commandments. I have defended these good things all across Florida and elsewhere including our heroic historic veterans' monuments in Lake City, Gainesville and our Ten Commandments in Starke.</div>
+    </div>
+
+    <div class="why-item reveal">
+      <div class="why-icon">🛡️</div>
+      <div class="why-text">I am running because I am the only one in this race who has defended our country, our Florida at the Texas/Mexico border and on Day 1 I am ready to enact policy and support our Governor and U.S. President in ensuring that we have the most safe and secure border on planet earth!</div>
+    </div>
+
+    <div class="why-signature reveal">— Marshall</div>
+  </div>
+</section>
+
+<!-- Issues -->
+<section class="issues section-padding" id="issues">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+      <div class="section-label">Platform</div>
+      <h2 class="section-title" style="color: var(--navy);">Fighting For What Matters</h2>
+      <div class="section-divider" style="margin: 24px auto 0;"></div>
+    </div>
+    <div class="issues-grid">
+      <div class="issue-card reveal">
+        <span class="issue-icon">🛡️</span>
+        <div class="issue-name">Border Security</div>
+        <div class="issue-desc">The only candidate who has physically defended our border at the Texas-Mexico line. Ready on Day 1 to support the Governor and President in securing our nation.</div>
+      </div>
+      <div class="issue-card reveal">
+        <span class="issue-icon">🌿</span>
+        <div class="issue-name">Conservation & Agriculture</div>
+        <div class="issue-desc">Protecting Florida's greenspace and agricultural lands from soulless suburban development. Florida's greatest advocate for conservation and our farming heritage.</div>
+      </div>
+      <div class="issue-card reveal">
+        <span class="issue-icon">💰</span>
+        <div class="issue-name">Lower Taxes</div>
+        <div class="issue-desc">Fighting against government's endless appetite to increase your taxes and regulate your business. A true Florida First candidate who puts taxpayers ahead of bureaucracy.</div>
+      </div>
+      <div class="issue-card reveal">
+        <span class="issue-icon">🏛️</span>
+        <div class="issue-name">Limited Government</div>
+        <div class="issue-desc">Reining in government overreach and standing up for individual liberty. Less regulation, more freedom — the way our Founders intended.</div>
+      </div>
+      <div class="issue-card reveal">
+        <span class="issue-icon">❤️</span>
+        <div class="issue-name">Pro-Life</div>
+        <div class="issue-desc">A staunch defender of the most innocent and vulnerable in our society. Fought against Amendment 4 and will continue the fight in Tallahassee for the sanctity of life.</div>
+      </div>
+      <div class="issue-card reveal">
+        <span class="issue-icon">🔫</span>
+        <div class="issue-name">Second Amendment</div>
+        <div class="issue-desc">Working to repeal unconstitutional age restrictions and carry prohibitions. Former Young Americans for Liberty president — a proven champion of gun rights.</div>
+      </div>
+      <div class="issue-card reveal">
+        <span class="issue-icon">⛪</span>
+        <div class="issue-name">Faith & Heritage</div>
+        <div class="issue-desc">Defending our veterans' monuments, the Ten Commandments, and Western Christian heritage against radical leftist removal efforts across Florida.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Endorsements -->
+<section class="endorsements section-padding" id="endorsements">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+      <div class="section-label">Support</div>
+      <h2 class="section-title">Endorsed By Leaders<br>Across Florida</h2>
+      <div class="section-divider" style="margin: 24px auto 0;"></div>
+    </div>
+    <div class="endorsements-grid">
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/ted-yoho-endorsement-graphic.jpg" alt="Ted Yoho Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Ted Yoho<br><small style="opacity:0.6">Former Florida Congressman</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/baxter-troutman-endorsement-graphic-b.jpg" alt="Baxter Troutman Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Baxter Troutman<br><small style="opacity:0.6">Former Florida State Representative</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/charles-van-zant-endorsement-graphic.jpg" alt="Charles Van Zant Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Charles Van Zant<br><small style="opacity:0.6">Former Florida State Representative</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/jay-fant-endorsement-graphic.jpg" alt="Jay Fant Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Jay Fant<br><small style="opacity:0.6">Former State Representative</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/paul-broun-endorsement-graphic.jpg" alt="Paul Broun Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Paul Broun<br><small style="opacity:0.6">Former Georgia Congressman</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/kenny-thompson-endorsement-graphic-a.jpg" alt="Kenny Thompson Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Kenny Thompson<br><small style="opacity:0.6">Bradford County Commissioner</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/mike-hill-endorsement-graphic-b.jpg" alt="Mike Hill Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Mike Hill</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/brandon-elixson-endorsement-graphic.jpg" alt="Brandon Elixson Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Brandon Elixson<br><small style="opacity:0.6">Lake City Pastor</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/paul-osteen-endorsement-graphic-c.jpg" alt="Paul O'Steen Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Paul O'Steen<br><small style="opacity:0.6">Worthington Springs Pastor</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dale-wiseman-endorsement-graphic.jpg" alt="Dale Wiseman Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dale Wiseman<br><small style="opacity:0.6">Industrial Pastor</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/earl-green-endorsement-graphic.jpg" alt="Earl Green Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Earl Green<br><small style="opacity:0.6">Lake City Pastor</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/james-taylor-endorsement-graphic-b.jpg" alt="James Taylor Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">James Taylor<br><small style="opacity:0.6">Keystone Heights Pastor</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/katherine-weitz-endorsement-graphic.jpg" alt="Katherine Weitz Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Katherine Weitz</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/raemi-eagle-glenn-endorsement-graphic-b.png" alt="Raemi Eagle Glenn Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Raemi Eagle Glenn</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/wayne-bloodsworth-endorsement-graphic.jpg" alt="Wayne Bloodsworth Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Wayne Bloodsworth<br><small style="opacity:0.6">High Springs City Commissioner</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dayna-williams-endorsement-graphic-b.jpg" alt="Dayna Williams Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dayna Williams<br><small style="opacity:0.6">Alachua County Commissioner</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/mac-johns-endorsement-graphic-a.jpg" alt="Mac Johns Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Mac Johns<br><small style="opacity:0.6">Union County Commissioner</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/tim-marden-endorsement-graphic-b.jpg" alt="Tim Marden Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Tim Marden<br><small style="opacity:0.6">City of Keystone Heights</small></div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/laurie-newsom-endorsement-graphic.jpg" alt="Laurie Newsom Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Laurie Newsom</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dave-woodrum-endorsement-graphic.jpg" alt="Dave Woodrum Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dave Woodrum</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/tom-germano-endorsement-graphic-b.jpg" alt="Tom Germano Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Tom Germano</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/varona-tomeu-endorsement-graphic.jpg" alt="Varona Tomeu Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Varona Tomeu</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/gene-bass-endorsement-graphic.jpg" alt="Gene Bass Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Gene Bass</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dog-hunters-endorsement-graphic.jpg" alt="Dog Hunters Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dog Hunters Endorsement</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <div class="container reveal">
+    <div class="cta-quote">"On Day 1, I am ready to enact policy and support our Governor and U.S. President in ensuring that we have the most safe and secure border on planet earth!"</div>
+    <a href="https://secure.anedot.com/marshall-rawson-campaign/donate" target="_blank" class="btn btn-primary">Donate to the Campaign</a>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact section-padding" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title" style="color: var(--navy);">Contact the Campaign</h2>
+        <div class="section-divider"></div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Campaign Headquarters</div>
+            <div class="contact-value">10528 U.S. Highway 301 S<br>Hampton, Florida 32044</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value"><a href="tel:+13525148568">(352) 514-8568</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:marshallclaytonr@yahoo.com">marshallclaytonr@yahoo.com</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📘</div>
+          <div>
+            <div class="contact-label">Facebook</div>
+            <div class="contact-value"><a href="https://www.facebook.com/profile.php?id=61572907880446" target="_blank">Follow on Facebook</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div class="signup-box">
+          <h3>Join the Movement</h3>
+          <p>Sign up to volunteer, get yard signs, and stay updated on Marshall's campaign for Florida State House District 10.</p>
+          <a href="signup.html" class="btn btn-primary">Sign Up Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <img src="https://marshallrawsoncampaign.com/images/marshall-rawson-logo-red-reversed.png" alt="Marshall Rawson" class="footer-logo">
+  <div class="footer-social">
+    <a href="https://www.facebook.com/profile.php?id=61572907880446" target="_blank" aria-label="Facebook">f</a>
+    <a href="mailto:marshallclaytonr@yahoo.com" aria-label="Email">✉</a>
+    <a href="tel:+13525148568" aria-label="Phone">☎</a>
+  </div>
+  <div class="footer-disclaimer">
+    Copyright &copy; Marshall Rawson Campaign. All rights reserved.<br>
+    Paid by Marshall Rawson, Republican, for State Representative
+  </div>
+</footer>
+
+<script>
+// ===== PRELOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('hidden');
+    animateHero();
+  }, 800);
+});
+
+// ===== HERO ANIMATION =====
+function animateHero() {
+  const letters = document.querySelectorAll('.hero-name span');
+  const tagline = document.getElementById('heroTagline');
+  const subtitle = document.getElementById('heroSubtitle');
+  const cta = document.getElementById('heroCta');
+
+  // Staggered letter reveal
+  letters.forEach((letter, i) => {
+    setTimeout(() => {
+      letter.style.transition = 'opacity 0.6s cubic-bezier(0.23,1,0.32,1), transform 0.6s cubic-bezier(0.23,1,0.32,1)';
+      letter.style.opacity = '1';
+      letter.style.transform = 'translateY(0) rotateX(0)';
+    }, 100 + i * 50);
+  });
+
+  // Tagline
+  setTimeout(() => {
+    tagline.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    tagline.style.opacity = '1'; tagline.style.transform = 'translateY(0)';
+  }, 200);
+
+  // Subtitle
+  setTimeout(() => {
+    subtitle.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    subtitle.style.opacity = '1'; subtitle.style.transform = 'translateY(0)';
+  }, 1000);
+
+  // CTA
+  setTimeout(() => {
+    cta.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    cta.style.opacity = '1'; cta.style.transform = 'translateY(0)';
+  }, 1300);
+}
+
+// ===== PARTICLES =====
+(function createParticles() {
+  const container = document.getElementById('heroParticles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 1;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%; top:${Math.random()*100}%;
+      animation: particleFloat ${8+Math.random()*12}s ease-in-out infinite ${Math.random()*5}s;
+      opacity: ${0.1 + Math.random()*0.2};
+    `;
+    container.appendChild(p);
+  }
+  const style = document.createElement('style');
+  style.textContent = `@keyframes particleFloat { 0%,100%{transform:translate(0,0)} 25%{transform:translate(${r()}px,${r()}px)} 50%{transform:translate(${r()}px,${r()}px)} 75%{transform:translate(${r()}px,${r()}px)} }`;
+  document.head.appendChild(style);
+  function r() { return (Math.random()-0.5)*80; }
+})();
+
+// ===== PARALLAX =====
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.pageYOffset;
+      const heroBg = document.getElementById('heroBg');
+      if (heroBg) heroBg.style.transform = `scale(1.1) translateY(${scrollY * 0.35}px)`;
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 80);
+});
+
+// ===== MOBILE NAV =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+  navOverlay.classList.toggle('open');
+});
+
+function closeNav() {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+  navOverlay.classList.remove('open');
+}
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Stagger children if grid
+      const children = entry.target.parentElement?.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      if (children) {
+        children.forEach((child, i) => {
+          child.style.transitionDelay = `${i * 0.08}s`;
+        });
+      }
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// ===== COUNTER ANIMATION =====
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = entry.target.getAttribute('data-target');
+      if (target) {
+        let current = 0;
+        const end = parseInt(target);
+        const step = () => {
+          current++;
+          entry.target.textContent = current;
+          if (current < end) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
