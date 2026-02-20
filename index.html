@@ -27,7 +27,6 @@
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
@@ -43,7 +42,7 @@ body {
   position: fixed; inset: 0; z-index: 10000;
   background: var(--navy-dark);
   display: flex; align-items: center; justify-content: center; flex-direction: column;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 #preloader img { width: 220px; animation: preloaderPulse 1.2s ease-in-out infinite; }
@@ -54,18 +53,14 @@ body {
 #preloader .loader-bar::after {
   content: ''; display: block; width: 40%; height: 100%;
   background: var(--red); border-radius: 3px;
-  animation: loaderSlide 1s ease-in-out infinite;
+  animation: loaderSlide 0.8s ease-in-out infinite;
 }
 @keyframes preloaderPulse { 0%,100% { opacity: 0.6; transform: scale(0.97); } 50% { opacity: 1; transform: scale(1); } }
 @keyframes loaderSlide { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
 
 /* ===== FLOATING SHAPES ===== */
-.floating-shapes {
-  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
-}
-.floating-shapes .shape {
-  position: absolute; border-radius: 50%; opacity: 0.03;
-}
+.floating-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.floating-shapes .shape { position: absolute; border-radius: 50%; opacity: 0.03; }
 .shape-1 { width: 600px; height: 600px; background: var(--red); top: -200px; right: -200px; animation: floatA 20s ease-in-out infinite; }
 .shape-2 { width: 400px; height: 400px; background: var(--gold); bottom: -100px; left: -100px; animation: floatB 25s ease-in-out infinite; }
 .shape-3 { width: 300px; height: 300px; background: var(--white); top: 50%; left: 50%; animation: floatC 18s ease-in-out infinite; }
@@ -117,7 +112,6 @@ body {
 .nav-donate::after { display: none !important; }
 .nav-donate:hover { background: var(--red-dark) !important; transform: translateY(-2px); box-shadow: 0 6px 25px var(--red-glow); }
 
-/* Hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: none; border: none; padding: 5px; }
 .hamburger span { display: block; width: 28px; height: 2px; background: var(--white); transition: all 0.3s; }
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
@@ -140,10 +134,7 @@ body {
   background: linear-gradient(135deg, rgba(15,26,46,0.88) 0%, rgba(26,39,68,0.75) 40%, rgba(196,30,58,0.15) 100%);
 }
 .hero-particles { position: absolute; inset: 0; overflow: hidden; }
-.particle {
-  position: absolute; border-radius: 50%; pointer-events: none;
-  background: rgba(255,255,255,0.15);
-}
+.particle { position: absolute; border-radius: 50%; pointer-events: none; background: rgba(255,255,255,0.15); }
 .hero-content {
   position: relative; z-index: 2; text-align: center;
   padding: 0 20px; max-width: 1000px;
@@ -185,12 +176,12 @@ body {
   background: var(--red); color: var(--white);
   box-shadow: 0 4px 20px var(--red-glow);
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--red-glow); }
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px var(--red-glow); background: var(--red-dark); }
 .btn-outline {
   background: transparent; color: var(--white);
   border: 2px solid rgba(255,255,255,0.3);
 }
-.btn-outline:hover { border-color: var(--white); transform: translateY(-3px); }
+.btn-outline:hover { border-color: var(--white); transform: translateY(-3px); background: rgba(255,255,255,0.06); }
 .hero-scroll {
   position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
   z-index: 2; animation: scrollBounce 2s ease-in-out infinite;
@@ -202,6 +193,7 @@ body {
 section { position: relative; z-index: 1; }
 .section-padding { padding: 120px 40px; }
 .container { max-width: 1200px; margin: 0 auto; }
+.text-center { text-align: center; }
 .section-label {
   font-family: 'Oswald', sans-serif; font-weight: 400;
   font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase;
@@ -214,6 +206,13 @@ section { position: relative; z-index: 1; }
 .section-divider {
   width: 60px; height: 3px; background: var(--red); margin-bottom: 40px;
 }
+.section-divider.centered { margin-left: auto; margin-right: auto; }
+.section-header {
+  text-align: center; margin-bottom: 60px;
+}
+.section-header .section-divider {
+  margin-left: auto; margin-right: auto;
+}
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
@@ -222,16 +221,40 @@ section { position: relative; z-index: 1; }
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
 /* ===== ABOUT ===== */
-.about { background: var(--off-white); color: var(--navy); }
+.about {
+  background: var(--off-white);
+  color: var(--navy);
+  position: relative;
+}
+.about::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+}
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .about-text p { font-size: 1.05rem; line-height: 1.8; color: #3a4255; margin-bottom: 20px; }
+.about-text p:first-child::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem; font-weight: 700;
+  float: left; line-height: 0.8;
+  margin-right: 8px; margin-top: 6px;
+  color: var(--red);
+}
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
 .stat-card {
-  background: var(--white); padding: 28px; border-radius: 8px;
-  text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  transition: transform 0.3s var(--transition), box-shadow 0.3s;
+  background: var(--white); padding: 28px; border-radius: 12px;
+  text-align: center; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.4s var(--transition), box-shadow 0.4s;
+  border: 1px solid rgba(0,0,0,0.04);
+  position: relative; overflow: hidden;
 }
-.stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.stat-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transform: scaleX(0); transition: transform 0.4s var(--transition);
+}
+.stat-card:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.12); }
+.stat-card:hover::after { transform: scaleX(1); }
 .stat-number {
   font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700;
   color: var(--red); line-height: 1;
@@ -242,31 +265,60 @@ section { position: relative; z-index: 1; }
 }
 
 /* ===== WHY I'M RUNNING ===== */
-.why-running { background: var(--navy); }
+.why-running {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.why-running::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(196,30,58,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(212,168,83,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
 .why-item {
-  display: grid; grid-template-columns: 60px 1fr; gap: 30px;
-  padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: 64px 1fr; gap: 28px; align-items: start;
+  padding: 36px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
 }
 .why-item:last-child { border-bottom: none; }
 .why-icon {
-  width: 60px; height: 60px; border-radius: 50%;
-  background: rgba(196,30,58,0.12); display: flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(196,30,58,0.15), rgba(196,30,58,0.08));
+  display: flex; align-items: center; justify-content: center;
   color: var(--red); flex-shrink: 0;
+  border: 1px solid rgba(196,30,58,0.2);
+  box-shadow: 0 4px 16px rgba(196,30,58,0.1);
+  transition: all 0.4s var(--transition);
 }
-.why-text { font-size: 1.05rem; line-height: 1.9; color: var(--text-light); }
-.why-preview { margin-bottom: 0; }
+.why-item:hover .why-icon {
+  background: linear-gradient(135deg, rgba(196,30,58,0.25), rgba(196,30,58,0.12));
+  box-shadow: 0 6px 24px rgba(196,30,58,0.2);
+  transform: scale(1.08);
+}
+.why-preview {
+  font-size: 1.1rem; line-height: 1.8; color: var(--white);
+  font-weight: 500; margin-bottom: 0;
+}
 .why-full {
-  max-height: 0; overflow: hidden; transition: max-height 0.5s var(--transition), opacity 0.4s;
-  opacity: 0;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.6s var(--transition), opacity 0.5s ease, margin-top 0.4s ease;
+  opacity: 0; margin-top: 0;
 }
-.why-full.expanded { max-height: 600px; opacity: 1; }
+.why-full.expanded { max-height: 600px; opacity: 1; margin-top: 12px; }
+.why-text {
+  font-size: 1rem; line-height: 1.9; color: var(--text-light);
+  font-weight: 300;
+  padding-left: 16px;
+  border-left: 2px solid rgba(196,30,58,0.3);
+}
 .why-toggle {
   background: none; border: none; color: var(--red); cursor: pointer;
   font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px;
-  text-transform: uppercase; padding: 10px 0 0; display: inline-flex; align-items: center; gap: 6px;
-  transition: color 0.3s;
+  text-transform: uppercase; padding: 12px 0 0; display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.3s, gap 0.3s;
 }
-.why-toggle:hover { color: var(--gold); }
+.why-toggle:hover { color: var(--gold); gap: 10px; }
 .why-toggle svg { width: 14px; height: 14px; transition: transform 0.3s; }
 .why-toggle.expanded svg { transform: rotate(180deg); }
 .why-signature {
@@ -275,21 +327,52 @@ section { position: relative; z-index: 1; }
 }
 
 /* ===== ISSUES ===== */
-.issues { background: var(--off-white); color: var(--navy); }
-.issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.issues {
+  background: var(--off-white); color: var(--navy);
+  position: relative;
+}
+.issues::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(196,30,58,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.issues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .issue-card {
-  background: var(--white); border-radius: 12px; padding: 40px 30px;
+  background: var(--white); border-radius: 16px; padding: 44px 32px 36px;
   text-align: center; position: relative; overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   transition: all 0.4s var(--transition); cursor: default;
+  border: 1px solid rgba(0,0,0,0.04);
 }
 .issue-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: var(--red); transform: scaleX(0); transition: transform 0.4s var(--transition);
+  background: linear-gradient(90deg, var(--red), var(--red-dark));
+  transform: scaleX(0); transition: transform 0.4s var(--transition);
+  transform-origin: left;
 }
-.issue-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+.issue-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(196,30,58,0.02) 0%, transparent 40%);
+  opacity: 0; transition: opacity 0.4s;
+  pointer-events: none;
+}
+.issue-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  border-color: rgba(196,30,58,0.1);
+}
 .issue-card:hover::before { transform: scaleX(1); }
-.issue-icon { margin-bottom: 20px; display: flex; justify-content: center; align-items: center; height: 48px; }
+.issue-card:hover::after { opacity: 1; }
+.issue-icon {
+  margin-bottom: 20px; display: flex; justify-content: center; align-items: center;
+  height: 56px;
+}
 .issue-name {
   font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px;
@@ -297,33 +380,45 @@ section { position: relative; z-index: 1; }
 .issue-desc { font-size: 0.92rem; line-height: 1.7; color: #5a6275; }
 
 /* ===== ENDORSEMENTS ===== */
-.endorsements { background: var(--navy-dark); }
+.endorsements {
+  background: var(--navy-dark);
+  position: relative;
+  overflow: hidden;
+}
+.endorsements::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(196,30,58,0.05) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(212,168,83,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
 .endorsements-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .endorsement-card {
   border-radius: 12px; overflow: hidden; position: relative;
-  background: var(--navy-light); box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  background: var(--navy-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
   transition: all 0.4s var(--transition);
+  border: 1px solid rgba(255,255,255,0.06);
 }
-.endorsement-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+.endorsement-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  border-color: rgba(196,30,58,0.3);
+}
 .endorsement-card img {
-  width: 100%; height: 200px; object-fit: cover; display: block;
+  width: 100%; height: auto; display: block;
   transition: transform 0.5s var(--transition);
 }
-.endorsement-card:hover img { transform: scale(1.05); }
-.endorsement-info {
-  padding: 20px; text-align: center;
-}
-.endorsement-name {
-  font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 500;
-  letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-light);
-  line-height: 1.5;
-}
+.endorsement-card:hover img { transform: scale(1.03); }
 
 /* ===== CTA BANNER ===== */
 .cta-banner {
-  position: relative; padding: 120px 40px; text-align: center; overflow: hidden;
+  position: relative; padding: 140px 40px; text-align: center; overflow: hidden;
   background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 50%, #d4344f 100%);
 }
 .cta-banner::before {
@@ -331,11 +426,22 @@ section { position: relative; z-index: 1; }
   background: url('https://marshallrawsoncampaign.com/images/IMG_4266.jpg') center / cover;
   opacity: 0.08;
 }
+.cta-banner::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(160,24,48,0.5) 100%);
+  pointer-events: none;
+}
 .cta-quote {
   position: relative; z-index: 1;
   font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.8rem);
   font-weight: 700; font-style: italic; line-height: 1.4;
-  max-width: 800px; margin: 0 auto 40px;
+  max-width: 800px; margin: 0 auto 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+.cta-attribution {
+  position: relative; z-index: 1;
+  font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 40px;
 }
 .cta-banner .btn-primary {
   background: var(--white); color: var(--red);
@@ -343,59 +449,90 @@ section { position: relative; z-index: 1; }
   animation: pulse 2s ease-in-out infinite;
   position: relative; z-index: 1;
 }
-.cta-banner .btn-primary:hover { transform: translateY(-3px) scale(1.02); }
+.cta-banner .btn-primary:hover { transform: translateY(-3px) scale(1.03); background: var(--white); }
 @keyframes pulse {
   0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
   50% { box-shadow: 0 0 0 20px rgba(255,255,255,0); }
 }
 
 /* ===== CONTACT ===== */
-.contact { background: var(--off-white); color: var(--navy); }
+.contact {
+  background: var(--off-white); color: var(--navy);
+  position: relative;
+}
+.contact::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+}
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 .contact-item { display: flex; gap: 16px; margin-bottom: 32px; }
 .contact-icon {
-  width: 50px; height: 50px; border-radius: 12px; flex-shrink: 0;
-  background: var(--navy); display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
+  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(26,39,68,0.3);
 }
 .contact-label {
   font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 400;
   letter-spacing: 2px; text-transform: uppercase; color: #6b7280; margin-bottom: 4px;
 }
 .contact-value { font-size: 1.05rem; color: var(--navy); line-height: 1.5; }
-.contact-value a { color: var(--red); text-decoration: none; }
-.contact-value a:hover { text-decoration: underline; }
+.contact-value a { color: var(--red); text-decoration: none; transition: color 0.3s; }
+.contact-value a:hover { color: var(--red-dark); text-decoration: underline; }
 .signup-box {
-  background: var(--navy); border-radius: 16px; padding: 50px 40px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+  border-radius: 20px; padding: 50px 40px;
   color: var(--white); text-align: center;
+  box-shadow: 0 16px 48px rgba(15,26,46,0.4);
+  position: relative; overflow: hidden;
+}
+.signup-box::before {
+  content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(196,30,58,0.06) 0%, transparent 50%);
+  pointer-events: none;
 }
 .signup-box h3 {
   font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px;
+  position: relative;
 }
-.signup-box p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; }
-.signup-box .btn { width: 100%; text-align: center; }
+.signup-box p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; position: relative; }
+.signup-box .btn { width: 100%; text-align: center; position: relative; }
 
 /* ===== FOOTER ===== */
 .footer {
-  background: var(--navy-dark); padding: 60px 40px 30px; text-align: center;
+  background: var(--navy-dark); padding: 80px 40px 40px; text-align: center;
   border-top: 1px solid rgba(255,255,255,0.06);
+  position: relative;
 }
-.footer-logo { height: 50px; margin-bottom: 24px; opacity: 0.8; }
-.footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+.footer::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 100%; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, rgba(196,30,58,0.04) 0%, transparent 50%);
+}
+.footer-logo { height: 55px; margin-bottom: 28px; opacity: 0.9; position: relative; }
+.footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 28px; position: relative; }
 .footer-social a {
-  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.08); color: var(--white); text-decoration: none;
-  font-size: 1.1rem; transition: all 0.3s;
+  width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.06); color: var(--white); text-decoration: none;
+  transition: all 0.3s var(--transition);
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.footer-social a:hover { background: var(--red); transform: translateY(-2px); }
+.footer-social a:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); box-shadow: 0 6px 20px var(--red-glow); }
+.footer-divider {
+  width: 60px; height: 2px; background: rgba(255,255,255,0.1);
+  margin: 0 auto 28px; position: relative;
+}
 .footer-disclaimer {
   font-size: 0.82rem; color: var(--text-muted); max-width: 500px; margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.8; position: relative;
+}
+.footer-disclaimer strong {
+  color: var(--text-light); font-weight: 600;
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 900px) {
-  .nav-links { 
+  .nav-links {
     position: fixed; top: 0; right: -100%; width: 80%; max-width: 360px; height: 100vh;
     background: var(--navy-dark); flex-direction: column; justify-content: center;
     padding: 40px; gap: 28px; transition: right 0.4s var(--transition);
@@ -405,19 +542,23 @@ section { position: relative; z-index: 1; }
   .hamburger { display: flex; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
-  .why-item { grid-template-columns: 1fr; gap: 16px; }
+  .why-item { grid-template-columns: 48px 1fr; gap: 16px; }
+  .why-icon { width: 48px; height: 48px; }
+  .why-icon svg { width: 22px !important; height: 22px !important; }
   .section-padding { padding: 80px 24px; }
   .navbar { padding: 16px 20px; }
   .navbar.scrolled { padding: 12px 20px; }
   .endorsements-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .cta-banner { padding: 100px 24px; }
 }
 @media (max-width: 500px) {
   .stats-grid { grid-template-columns: 1fr; }
   .hero-name { letter-spacing: -1px; }
   .issues-grid { grid-template-columns: 1fr; }
+  .endorsements-grid { grid-template-columns: 1fr; }
+  .why-item { grid-template-columns: 1fr; }
 }
 
-/* ===== MOBILE NAV OVERLAY ===== */
 .nav-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998;
   opacity: 0; visibility: hidden; transition: all 0.3s;
@@ -493,7 +634,7 @@ section { position: relative; z-index: 1; }
         <div class="about-text">
           <p>Marshall Rawson is a proud North Florida native, a husband, father of five, and a fearless conservative fighter. A graduate of the University of Florida's Levin College of Law, Marshall has dedicated his career and life to defending the values that make Florida great.</p>
           <p>As president of the Young Americans for Liberty chapter in college, Marshall championed Second Amendment rights, limited government, and constitutional principles long before entering the political arena. He brings the same tenacity to his campaign for the Florida State House.</p>
-          <p>Marshall is the only candidate in this race who has physically defended our nation at the Texas-Mexico border, standing shoulder to shoulder with those protecting American sovereignty. He has fought to preserve Florida's heritage — defending historic veterans' monuments in Lake City and Gainesville, and the Ten Commandments monument in Starke.</p>
+          <p>Marshall is the only candidate in this race who has physically defended our nation at the Texas-Mexico border, standing shoulder to shoulder with those protecting American sovereignty. He has fought to preserve Florida's heritage -- defending historic veterans' monuments in Lake City and Gainesville, and the Ten Commandments monument in Starke.</p>
           <p>A committed community leader, Marshall has worked directly with local officials to remove inappropriate materials from county libraries and stands firmly against the radical ideologies threatening our children's education. His roots run deep in North Florida, and he's ready to take that fight to Tallahassee.</p>
         </div>
       </div>
@@ -524,120 +665,120 @@ section { position: relative; z-index: 1; }
 <!-- Why I'm Running -->
 <section class="why-running section-padding" id="why">
   <div class="container">
-    <div class="reveal">
+    <div class="section-header reveal">
       <div class="section-label">My Mission</div>
       <h2 class="section-title">Why I'm Running</h2>
       <div class="section-divider"></div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22c4-2.5 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 3 7.5 7 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22c4-2.5 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 3 7.5 7 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
       <div>
         <div class="why-preview">I am running because every day, the Florida that I love loses another 800-1000 acres of good greenspace and agriculture lands to soulless suburban development.</div>
-        <div class="why-full"><div class="why-text">I will be Florida's greatest advocate when it comes to conservation and Florida Agriculture. Shopping malls and soulless suburban development are replacing the land we love — and I will fight to stop it.</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="why-full"><div class="why-text">I will be Florida's greatest advocate when it comes to conservation and Florida Agriculture. Shopping malls and soulless suburban development are replacing the land we love -- and I will fight to stop it.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
       <div>
         <div class="why-preview">I am running because government wants you to pay for unchecked growth by increasing your taxes and further regulating your business.</div>
-        <div class="why-full"><div class="why-text">While government makes room for the whole world to relocate here, that same government wants you to pay for it — inevitably increasing crime and congestion. I will be your Florida First Candidate.</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="why-full"><div class="why-text">While government makes room for the whole world to relocate here, that same government wants you to pay for it -- inevitably increasing crime and congestion. I will be your Florida First Candidate.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
       <div>
         <div class="why-preview">I am running because local government is using your tax dollars to push anti-Western and anti-Christian propaganda on our youth.</div>
         <div class="why-full"><div class="why-text">I am sick of seeing local government take the fruits of our labor, by taxing us, so that they can fund county libraries and education curriculums that push sick, woke propaganda on our children. I have worked with my county commissioner to remove such propaganda from the children's tables at our county library and I will continue that fight.</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
       <div>
         <div class="why-preview">I am running because the most innocent and vulnerable of our society desperately need equal protection in Tallahassee.</div>
         <div class="why-full"><div class="why-text">I will staunchly defend life as I did against last year's proposed Amendment 4. The unborn deserve a voice, and I will be that voice.</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
       <div>
         <div class="why-preview">I am running because Tallahassee has repeatedly failed to defend and restore our Second Amendment rights.</div>
         <div class="why-full"><div class="why-text">I will immediately work to repeal the prohibition on 18-20 year olds from buying a firearm as well as the prohibition on where and in what manner a law-abiding adult carries. As the Young Americans for Liberty president in college I championed these issues, and I will in Tallahassee.</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21"/><path d="M12 7v5l3 3"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21"/><path d="M12 7v5l3 3"/></svg></div>
       <div>
         <div class="why-preview">I am running because Tallahassee needs the courage to defend our historic veterans' monuments and the Ten Commandments.</div>
-        <div class="why-full"><div class="why-text">I have defended these good things all across Florida and elsewhere — including our heroic historic veterans' monuments in Lake City, Gainesville and our Ten Commandments in Starke. The radical left will not erase our heritage on my watch.</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="why-full"><div class="why-text">I have defended these good things all across Florida and elsewhere -- including our heroic historic veterans' monuments in Lake City, Gainesville and our Ten Commandments in Starke. The radical left will not erase our heritage on my watch.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg></div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg></div>
       <div>
         <div class="why-preview">I am the only one in this race who has defended our country at the Texas/Mexico border.</div>
         <div class="why-full"><div class="why-text">On Day 1 I am ready to enact policy and support our Governor and U.S. President in ensuring that we have the most safe and secure border on planet earth!</div></div>
-        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
     </div>
 
-    <div class="why-signature reveal">— Marshall</div>
+    <div class="why-signature reveal">-- Marshall</div>
   </div>
 </section>
 
 <!-- Issues -->
 <section class="issues section-padding" id="issues">
   <div class="container">
-    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+    <div class="section-header reveal">
       <div class="section-label">Platform</div>
       <h2 class="section-title" style="color: var(--navy);">Fighting For What Matters</h2>
-      <div class="section-divider" style="margin: 24px auto 0;"></div>
+      <div class="section-divider"></div>
     </div>
     <div class="issues-grid">
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 22c4-2.5 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 3 7.5 7 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 22c4-2.5 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 3 7.5 7 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
         <div class="issue-name">Border Security</div>
         <div class="issue-desc">The only candidate who has physically defended our border at the Texas-Mexico line. Ready on Day 1 to support the Governor and President in securing our nation.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L3 23l2-1c1.44-.71 3.72-1.39 5.37-1.82"/><path d="M17 8c2-2 4.5-4.5 6-6-1.5 1.5-4 4-6 6z"/><path d="M17 8l-5 5"/><path d="M14 15c.5 1.5.5 3.5-.5 5l-1-1c-.5-.5-1-1.5-1-2.5L14 15z"/><path d="M9 10c-1.5-.5-3.5-.5-5 .5l1 1c.5.5 1.5 1 2.5 1L9 10z"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L3 23l2-1c1.44-.71 3.72-1.39 5.37-1.82"/><path d="M17 8c2-2 4.5-4.5 6-6-1.5 1.5-4 4-6 6z"/><path d="M17 8l-5 5"/><path d="M14 15c.5 1.5.5 3.5-.5 5l-1-1c-.5-.5-1-1.5-1-2.5L14 15z"/><path d="M9 10c-1.5-.5-3.5-.5-5 .5l1 1c.5.5 1.5 1 2.5 1L9 10z"/></svg></span>
         <div class="issue-name">Conservation & Agriculture</div>
         <div class="issue-desc">Protecting Florida's greenspace and agricultural lands from soulless suburban development. Florida's greatest advocate for conservation and our farming heritage.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
         <div class="issue-name">Lower Taxes</div>
         <div class="issue-desc">Fighting against government's endless appetite to increase your taxes and regulate your business. A true Florida First candidate who puts taxpayers ahead of bureaucracy.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><path d="M10 10h4"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><path d="M10 10h4"/></svg></span>
         <div class="issue-name">Limited Government</div>
-        <div class="issue-desc">Reining in government overreach and standing up for individual liberty. Less regulation, more freedom — the way our Founders intended.</div>
+        <div class="issue-desc">Reining in government overreach and standing up for individual liberty. Less regulation, more freedom -- the way our Founders intended.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>
         <div class="issue-name">Pro-Life</div>
         <div class="issue-desc">A staunch defender of the most innocent and vulnerable in our society. Fought against Amendment 4 and will continue the fight in Tallahassee for the sanctity of life.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
         <div class="issue-name">Second Amendment</div>
-        <div class="issue-desc">Working to repeal unconstitutional age restrictions and carry prohibitions. Former Young Americans for Liberty president — a proven champion of gun rights.</div>
+        <div class="issue-desc">Working to repeal unconstitutional age restrictions and carry prohibitions. Former Young Americans for Liberty president -- a proven champion of gun rights.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M18 2H6a2 2 0 00-2 2v16l8-4 8 4V4a2 2 0 00-2-2z"/></svg></span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M18 2H6a2 2 0 00-2 2v16l8-4 8 4V4a2 2 0 00-2-2z"/></svg></span>
         <div class="issue-name">Faith & Heritage</div>
         <div class="issue-desc">Defending our veterans' monuments, the Ten Commandments, and Western Christian heritage against radical leftist removal efforts across Florida.</div>
       </div>
@@ -648,36 +789,36 @@ section { position: relative; z-index: 1; }
 <!-- Endorsements -->
 <section class="endorsements section-padding" id="endorsements">
   <div class="container">
-    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+    <div class="section-header reveal">
       <div class="section-label">Support</div>
       <h2 class="section-title">Endorsed By Leaders<br>Across Florida</h2>
-      <div class="section-divider" style="margin: 24px auto 0;"></div>
+      <div class="section-divider"></div>
     </div>
     <div class="endorsements-grid">
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/ted-yoho-endorsement-graphic.jpg" alt="Ted Yoho Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Ted Yoho<br><small style="opacity:0.6">Former Florida Congressman</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/baxter-troutman-endorsement-graphic-b.jpg" alt="Baxter Troutman Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Baxter Troutman<br><small style="opacity:0.6">Former Florida State Representative</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/charles-van-zant-endorsement-graphic.jpg" alt="Charles Van Zant Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Charles Van Zant<br><small style="opacity:0.6">Former Florida State Representative</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/jay-fant-endorsement-graphic.jpg" alt="Jay Fant Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Jay Fant<br><small style="opacity:0.6">Former State Representative</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/paul-broun-endorsement-graphic.jpg" alt="Paul Broun Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Paul Broun<br><small style="opacity:0.6">Former Georgia Congressman</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/kenny-thompson-endorsement-graphic-a.jpg" alt="Kenny Thompson Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Kenny Thompson<br><small style="opacity:0.6">Bradford County Commissioner</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/mike-hill-endorsement-graphic-b.jpg" alt="Mike Hill Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Mike Hill</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/brandon-elixson-endorsement-graphic.jpg" alt="Brandon Elixson Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Brandon Elixson<br><small style="opacity:0.6">Lake City Pastor</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/paul-osteen-endorsement-graphic-c.jpg" alt="Paul O'Steen Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Paul O'Steen<br><small style="opacity:0.6">Worthington Springs Pastor</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dale-wiseman-endorsement-graphic.jpg" alt="Dale Wiseman Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dale Wiseman<br><small style="opacity:0.6">Industrial Pastor</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/earl-green-endorsement-graphic.jpg" alt="Earl Green Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Earl Green<br><small style="opacity:0.6">Lake City Pastor</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/james-taylor-endorsement-graphic-b.jpg" alt="James Taylor Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">James Taylor<br><small style="opacity:0.6">Keystone Heights Pastor</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/katherine-weitz-endorsement-graphic.jpg" alt="Katherine Weitz Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Katherine Weitz</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/raemi-eagle-glenn-endorsement-graphic-b.png" alt="Raemi Eagle Glenn Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Raemi Eagle Glenn</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/wayne-bloodsworth-endorsement-graphic.jpg" alt="Wayne Bloodsworth Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Wayne Bloodsworth<br><small style="opacity:0.6">High Springs City Commissioner</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dayna-williams-endorsement-graphic-b.jpg" alt="Dayna Williams Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dayna Williams<br><small style="opacity:0.6">Alachua County Commissioner</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/mac-johns-endorsement-graphic-a.jpg" alt="Mac Johns Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Mac Johns<br><small style="opacity:0.6">Union County Commissioner</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/tim-marden-endorsement-graphic-b.jpg" alt="Tim Marden Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Tim Marden<br><small style="opacity:0.6">City of Keystone Heights</small></div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/laurie-newsom-endorsement-graphic.jpg" alt="Laurie Newsom Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Laurie Newsom</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dave-woodrum-endorsement-graphic.jpg" alt="Dave Woodrum Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dave Woodrum</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/tom-germano-endorsement-graphic-b.jpg" alt="Tom Germano Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Tom Germano</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/varona-tomeu-endorsement-graphic.jpg" alt="Varona Tomeu Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Varona Tomeu</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/gene-bass-endorsement-graphic.jpg" alt="Gene Bass Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Gene Bass</div></div></div>
-      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dog-hunters-endorsement-graphic.jpg" alt="Dog Hunters Endorsement" loading="lazy"><div class="endorsement-info"><div class="endorsement-name">Dog Hunters Endorsement</div></div></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/ted-yoho-endorsement-graphic.jpg" alt="Ted Yoho Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/baxter-troutman-endorsement-graphic-b.jpg" alt="Baxter Troutman Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/brandon-elixson-endorsement-graphic.jpg" alt="Brandon Elixson Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/charles-van-zant-endorsement-graphic.jpg" alt="Charles Van Zant Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/paul-osteen-endorsement-graphic-c.jpg" alt="Paul O'Steen Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dale-wiseman-endorsement-graphic.jpg" alt="Dale Wiseman Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/earl-green-endorsement-graphic.jpg" alt="Earl Green Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/james-taylor-endorsement-graphic-b.jpg" alt="James Taylor Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/jay-fant-endorsement-graphic.jpg" alt="Jay Fant Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/kenny-thompson-endorsement-graphic-a.jpg" alt="Kenny Thompson Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/katherine-weitz-endorsement-graphic.jpg" alt="Katherine Weitz Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/raemi-eagle-glenn-endorsement-graphic-b.png" alt="Raemi Eagle Glenn Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/wayne-bloodsworth-endorsement-graphic.jpg" alt="Wayne Bloodsworth Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dayna-williams-endorsement-graphic-b.jpg" alt="Dayna Williams Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/mac-johns-endorsement-graphic-a.jpg" alt="Mac Johns Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/mike-hill-endorsement-graphic-b.jpg" alt="Mike Hill Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/paul-broun-endorsement-graphic.jpg" alt="Paul Broun Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/tim-marden-endorsement-graphic-b.jpg" alt="Tim Marden Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/laurie-newsom-endorsement-graphic.jpg" alt="Laurie Newsom Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dave-woodrum-endorsement-graphic.jpg" alt="Dave Woodrum Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/tom-germano-endorsement-graphic-b.jpg" alt="Tom Germano Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/varona-tomeu-endorsement-graphic.jpg" alt="Varona Tomeu Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/gene-bass-endorsement-graphic.jpg" alt="Gene Bass Endorsement" loading="lazy"></div>
+      <div class="endorsement-card reveal"><img src="https://marshallrawsoncampaign.com/images/endorsements/dog-hunters-endorsement-graphic.jpg" alt="Dog Hunters Endorsement" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -686,6 +827,7 @@ section { position: relative; z-index: 1; }
 <section class="cta-banner">
   <div class="container reveal">
     <div class="cta-quote">"On Day 1, I am ready to enact policy and support our Governor and U.S. President in ensuring that we have the most safe and secure border on planet earth!"</div>
+    <div class="cta-attribution">-- Marshall Rawson</div>
     <a href="https://secure.anedot.com/marshall-rawson-campaign/donate" target="_blank" class="btn btn-primary">Donate to the Campaign</a>
   </div>
 </section>
@@ -700,7 +842,7 @@ section { position: relative; z-index: 1; }
         <div class="section-divider"></div>
 
         <div class="contact-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div>
             <div class="contact-label">Campaign Headquarters</div>
             <div class="contact-value">10528 U.S. Highway 301 S<br>Hampton, Florida 32044</div>
@@ -708,7 +850,7 @@ section { position: relative; z-index: 1; }
         </div>
 
         <div class="contact-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="22" height="22"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
           <div>
             <div class="contact-label">Phone</div>
             <div class="contact-value"><a href="tel:+13525148568">(352) 514-8568</a></div>
@@ -716,7 +858,7 @@ section { position: relative; z-index: 1; }
         </div>
 
         <div class="contact-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div>
             <div class="contact-label">Email</div>
             <div class="contact-value"><a href="mailto:marshallclaytonr@yahoo.com">marshallclaytonr@yahoo.com</a></div>
@@ -724,7 +866,7 @@ section { position: relative; z-index: 1; }
         </div>
 
         <div class="contact-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="22" height="22"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
           <div>
             <div class="contact-label">Facebook</div>
             <div class="contact-value"><a href="https://www.facebook.com/profile.php?id=61572907880446" target="_blank">Follow on Facebook</a></div>
@@ -736,7 +878,7 @@ section { position: relative; z-index: 1; }
         <div class="signup-box">
           <h3>Join the Movement</h3>
           <p>Sign up to volunteer, get yard signs, and stay updated on Marshall's campaign for Florida State House District 10.</p>
-          <a href="signup.html" class="btn btn-primary">Sign Up Now</a>
+          <a href="https://secure.anedot.com/marshall-rawson-campaign/donate" target="_blank" class="btn btn-primary">Support the Campaign</a>
         </div>
       </div>
     </div>
@@ -747,13 +889,14 @@ section { position: relative; z-index: 1; }
 <footer class="footer">
   <img src="https://marshallrawsoncampaign.com/images/marshall-rawson-logo-red-reversed.png" alt="Marshall Rawson" class="footer-logo">
   <div class="footer-social">
-    <a href="https://www.facebook.com/profile.php?id=61572907880446" target="_blank" aria-label="Facebook">f</a>
-    <a href="mailto:marshallclaytonr@yahoo.com" aria-label="Email">✉</a>
-    <a href="tel:+13525148568" aria-label="Phone">☎</a>
+    <a href="https://www.facebook.com/profile.php?id=61572907880446" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+    <a href="mailto:marshallclaytonr@yahoo.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+    <a href="tel:+13525148568" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
   </div>
+  <div class="footer-divider"></div>
   <div class="footer-disclaimer">
-    Copyright &copy; Marshall Rawson Campaign. All rights reserved.<br>
-    Paid by Marshall Rawson, Republican, for State Representative
+    <strong>Copyright Marshall Rawson Campaign. All rights reserved.</strong><br>
+    Paid for by Marshall Rawson, Republican, for State Representative District 10
   </div>
 </footer>
 
@@ -763,7 +906,7 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('preloader').classList.add('hidden');
     animateHero();
-  }, 800);
+  }, 300);
 });
 
 // ===== HERO ANIMATION =====
@@ -773,32 +916,28 @@ function animateHero() {
   const subtitle = document.getElementById('heroSubtitle');
   const cta = document.getElementById('heroCta');
 
-  // Staggered letter reveal
   letters.forEach((letter, i) => {
     setTimeout(() => {
       letter.style.transition = 'opacity 0.6s cubic-bezier(0.23,1,0.32,1), transform 0.6s cubic-bezier(0.23,1,0.32,1)';
       letter.style.opacity = '1';
       letter.style.transform = 'translateY(0) rotateX(0)';
-    }, 100 + i * 50);
+    }, 80 + i * 40);
   });
 
-  // Tagline
   setTimeout(() => {
     tagline.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     tagline.style.opacity = '1'; tagline.style.transform = 'translateY(0)';
-  }, 200);
+  }, 100);
 
-  // Subtitle
   setTimeout(() => {
     subtitle.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     subtitle.style.opacity = '1'; subtitle.style.transform = 'translateY(0)';
-  }, 1000);
+  }, 800);
 
-  // CTA
   setTimeout(() => {
     cta.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     cta.style.opacity = '1'; cta.style.transform = 'translateY(0)';
-  }, 1300);
+  }, 1100);
 }
 
 // ===== PARTICLES =====
@@ -808,28 +947,23 @@ function animateHero() {
     const p = document.createElement('div');
     p.className = 'particle';
     const size = Math.random() * 4 + 1;
-    p.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random()*100}%; top:${Math.random()*100}%;
-      animation: particleFloat ${8+Math.random()*12}s ease-in-out infinite ${Math.random()*5}s;
-      opacity: ${0.1 + Math.random()*0.2};
-    `;
+    p.style.cssText = 'width:'+size+'px; height:'+size+'px; left:'+Math.random()*100+'%; top:'+Math.random()*100+'%; animation: particleFloat '+(8+Math.random()*12)+'s ease-in-out infinite '+Math.random()*5+'s; opacity: '+(0.1+Math.random()*0.2)+';';
     container.appendChild(p);
   }
-  const style = document.createElement('style');
-  style.textContent = `@keyframes particleFloat { 0%,100%{transform:translate(0,0)} 25%{transform:translate(${r()}px,${r()}px)} 50%{transform:translate(${r()}px,${r()}px)} 75%{transform:translate(${r()}px,${r()}px)} }`;
+  var style = document.createElement('style');
+  style.textContent = '@keyframes particleFloat { 0%,100%{transform:translate(0,0)} 25%{transform:translate('+r()+'px,'+r()+'px)} 50%{transform:translate('+r()+'px,'+r()+'px)} 75%{transform:translate('+r()+'px,'+r()+'px)} }';
   document.head.appendChild(style);
   function r() { return (Math.random()-0.5)*80; }
 })();
 
 // ===== PARALLAX =====
-let ticking = false;
-window.addEventListener('scroll', () => {
+var ticking = false;
+window.addEventListener('scroll', function() {
   if (!ticking) {
-    requestAnimationFrame(() => {
-      const scrollY = window.pageYOffset;
-      const heroBg = document.getElementById('heroBg');
-      if (heroBg) heroBg.style.transform = `scale(1.1) translateY(${scrollY * 0.35}px)`;
+    requestAnimationFrame(function() {
+      var scrollY = window.pageYOffset;
+      var heroBg = document.getElementById('heroBg');
+      if (heroBg) heroBg.style.transform = 'scale(1.1) translateY(' + scrollY * 0.35 + 'px)';
       ticking = false;
     });
     ticking = true;
@@ -837,16 +971,16 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== NAVBAR SCROLL =====
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 80);
 });
 
 // ===== MOBILE NAV =====
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-const navOverlay = document.getElementById('navOverlay');
+var hamburger = document.getElementById('hamburger');
+var navLinks = document.getElementById('navLinks');
+var navOverlay = document.getElementById('navOverlay');
 
-hamburger.addEventListener('click', () => {
+hamburger.addEventListener('click', function() {
   hamburger.classList.toggle('active');
   navLinks.classList.toggle('open');
   navOverlay.classList.toggle('open');
@@ -859,40 +993,40 @@ function closeNav() {
 }
 
 // ===== SCROLL REVEAL =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      // Stagger children if grid
-      const children = entry.target.parentElement?.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-      if (children) {
-        children.forEach((child, i) => {
-          child.style.transitionDelay = `${i * 0.08}s`;
+      var parent = entry.target.parentElement;
+      if (parent) {
+        var children = parent.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        children.forEach(function(child, i) {
+          child.style.transitionDelay = (i * 0.08) + 's';
         });
       }
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) { observer.observe(el); });
 
 // ===== WHY TOGGLE =====
 function toggleWhy(btn) {
-  const fullText = btn.previousElementSibling;
-  const isExpanded = fullText.classList.toggle('expanded');
+  var fullText = btn.previousElementSibling;
+  var isExpanded = fullText.classList.toggle('expanded');
   btn.classList.toggle('expanded');
   btn.childNodes[0].textContent = isExpanded ? 'Read Less ' : 'Read More ';
 }
 
 // ===== COUNTER ANIMATION =====
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+var counterObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
     if (entry.isIntersecting) {
-      const target = entry.target.getAttribute('data-target');
+      var target = entry.target.getAttribute('data-target');
       if (target) {
-        let current = 0;
-        const end = parseInt(target);
-        const step = () => {
+        var current = 0;
+        var end = parseInt(target);
+        var step = function() {
           current++;
           entry.target.textContent = current;
           if (current < end) requestAnimationFrame(step);
@@ -904,7 +1038,7 @@ const counterObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
+document.querySelectorAll('.stat-number[data-target]').forEach(function(el) { counterObserver.observe(el); });
 </script>
 
 </body>
