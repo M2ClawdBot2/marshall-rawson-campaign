@@ -251,9 +251,24 @@ section { position: relative; z-index: 1; }
 .why-icon {
   width: 60px; height: 60px; border-radius: 50%;
   background: rgba(196,30,58,0.12); display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; flex-shrink: 0;
+  color: var(--red); flex-shrink: 0;
 }
 .why-text { font-size: 1.05rem; line-height: 1.9; color: var(--text-light); }
+.why-preview { margin-bottom: 0; }
+.why-full {
+  max-height: 0; overflow: hidden; transition: max-height 0.5s var(--transition), opacity 0.4s;
+  opacity: 0;
+}
+.why-full.expanded { max-height: 600px; opacity: 1; }
+.why-toggle {
+  background: none; border: none; color: var(--red); cursor: pointer;
+  font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 10px 0 0; display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.3s;
+}
+.why-toggle:hover { color: var(--gold); }
+.why-toggle svg { width: 14px; height: 14px; transition: transform 0.3s; }
+.why-toggle.expanded svg { transform: rotate(180deg); }
 .why-signature {
   font-family: 'Playfair Display', serif; font-style: italic;
   font-size: 1.4rem; color: var(--gold); margin-top: 40px; text-align: right;
@@ -274,7 +289,7 @@ section { position: relative; z-index: 1; }
 }
 .issue-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
 .issue-card:hover::before { transform: scaleX(1); }
-.issue-icon { font-size: 2.8rem; margin-bottom: 20px; display: block; }
+.issue-icon { margin-bottom: 20px; display: flex; justify-content: center; align-items: center; height: 48px; }
 .issue-name {
   font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px;
@@ -516,38 +531,66 @@ section { position: relative; z-index: 1; }
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">🌿</div>
-      <div class="why-text">I am running because every day, the Florida that I love loses another 800-1000 acres of good greenspace and agriculture lands to soulless suburban development and shopping malls. I will be Florida's greatest advocate when it comes to conservation and Florida Agriculture.</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22c4-2.5 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 3 7.5 7 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div>
+        <div class="why-preview">I am running because every day, the Florida that I love loses another 800-1000 acres of good greenspace and agriculture lands to soulless suburban development.</div>
+        <div class="why-full"><div class="why-text">I will be Florida's greatest advocate when it comes to conservation and Florida Agriculture. Shopping malls and soulless suburban development are replacing the land we love — and I will fight to stop it.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">💰</div>
-      <div class="why-text">I am running because while government makes room for the whole world to relocate here, that same government(s) wants you to pay for it by increasing your taxes, further regulating you and your business and inevitably increasing crime and congestion. Here, I will be your Florida First Candidate.</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div>
+        <div class="why-preview">I am running because government wants you to pay for unchecked growth by increasing your taxes and further regulating your business.</div>
+        <div class="why-full"><div class="why-text">While government makes room for the whole world to relocate here, that same government wants you to pay for it — inevitably increasing crime and congestion. I will be your Florida First Candidate.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">📚</div>
-      <div class="why-text">I am running because I am sick of seeing local government take the fruits of our labor, by taxing us, so that they can fund county libraries and education curriculums that push sick, woke, anti-Western and anti-Christian propaganda on our youth. I have worked with my county commissioner to remove such propaganda from the children's tables at our county library and I will continue that fight.</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+      <div>
+        <div class="why-preview">I am running because local government is using your tax dollars to push anti-Western and anti-Christian propaganda on our youth.</div>
+        <div class="why-full"><div class="why-text">I am sick of seeing local government take the fruits of our labor, by taxing us, so that they can fund county libraries and education curriculums that push sick, woke propaganda on our children. I have worked with my county commissioner to remove such propaganda from the children's tables at our county library and I will continue that fight.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">❤️</div>
-      <div class="why-text">I am running because the most innocent and the most vulnerable of our society desperately need equal protection in Tallahassee. I will staunchly defend life as I did against last year's proposed Amendment 4.</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <div>
+        <div class="why-preview">I am running because the most innocent and vulnerable of our society desperately need equal protection in Tallahassee.</div>
+        <div class="why-full"><div class="why-text">I will staunchly defend life as I did against last year's proposed Amendment 4. The unborn deserve a voice, and I will be that voice.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">🔫</div>
-      <div class="why-text">I am running because Tallahassee has repetitively failed to defend and restore our second amendment rights even while those same representatives look you in the eye and claim to be such a defender. I will immediately work to repeal the prohibition on 18-20 years old from buying a firearm as well as the prohibition where and in what manner a law-abiding adult caries. As the Young American for Liberty president in college I championed these issues, and I will in Tallahassee.</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg></div>
+      <div>
+        <div class="why-preview">I am running because Tallahassee has repeatedly failed to defend and restore our Second Amendment rights.</div>
+        <div class="why-full"><div class="why-text">I will immediately work to repeal the prohibition on 18-20 year olds from buying a firearm as well as the prohibition on where and in what manner a law-abiding adult carries. As the Young Americans for Liberty president in college I championed these issues, and I will in Tallahassee.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">⛪</div>
-      <div class="why-text">I am running because Tallahassee desperately needs the courage to stand up against the radical left and their removal of our historic veteran's monuments and 10 Commandments. I have defended these good things all across Florida and elsewhere including our heroic historic veterans' monuments in Lake City, Gainesville and our Ten Commandments in Starke.</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21"/><path d="M12 7v5l3 3"/></svg></div>
+      <div>
+        <div class="why-preview">I am running because Tallahassee needs the courage to defend our historic veterans' monuments and the Ten Commandments.</div>
+        <div class="why-full"><div class="why-text">I have defended these good things all across Florida and elsewhere — including our heroic historic veterans' monuments in Lake City, Gainesville and our Ten Commandments in Starke. The radical left will not erase our heritage on my watch.</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-item reveal">
-      <div class="why-icon">🛡️</div>
-      <div class="why-text">I am running because I am the only one in this race who has defended our country, our Florida at the Texas/Mexico border and on Day 1 I am ready to enact policy and support our Governor and U.S. President in ensuring that we have the most safe and secure border on planet earth!</div>
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg></div>
+      <div>
+        <div class="why-preview">I am the only one in this race who has defended our country at the Texas/Mexico border.</div>
+        <div class="why-full"><div class="why-text">On Day 1 I am ready to enact policy and support our Governor and U.S. President in ensuring that we have the most safe and secure border on planet earth!</div></div>
+        <button class="why-toggle" onclick="toggleWhy(this)">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
 
     <div class="why-signature reveal">— Marshall</div>
@@ -564,37 +607,37 @@ section { position: relative; z-index: 1; }
     </div>
     <div class="issues-grid">
       <div class="issue-card reveal">
-        <span class="issue-icon">🛡️</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 22c4-2.5 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 3 7.5 7 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
         <div class="issue-name">Border Security</div>
         <div class="issue-desc">The only candidate who has physically defended our border at the Texas-Mexico line. Ready on Day 1 to support the Governor and President in securing our nation.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon">🌿</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L3 23l2-1c1.44-.71 3.72-1.39 5.37-1.82"/><path d="M17 8c2-2 4.5-4.5 6-6-1.5 1.5-4 4-6 6z"/><path d="M17 8l-5 5"/><path d="M14 15c.5 1.5.5 3.5-.5 5l-1-1c-.5-.5-1-1.5-1-2.5L14 15z"/><path d="M9 10c-1.5-.5-3.5-.5-5 .5l1 1c.5.5 1.5 1 2.5 1L9 10z"/></svg></span>
         <div class="issue-name">Conservation & Agriculture</div>
         <div class="issue-desc">Protecting Florida's greenspace and agricultural lands from soulless suburban development. Florida's greatest advocate for conservation and our farming heritage.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon">💰</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
         <div class="issue-name">Lower Taxes</div>
         <div class="issue-desc">Fighting against government's endless appetite to increase your taxes and regulate your business. A true Florida First candidate who puts taxpayers ahead of bureaucracy.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon">🏛️</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><path d="M10 10h4"/></svg></span>
         <div class="issue-name">Limited Government</div>
         <div class="issue-desc">Reining in government overreach and standing up for individual liberty. Less regulation, more freedom — the way our Founders intended.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon">❤️</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>
         <div class="issue-name">Pro-Life</div>
         <div class="issue-desc">A staunch defender of the most innocent and vulnerable in our society. Fought against Amendment 4 and will continue the fight in Tallahassee for the sanctity of life.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon">🔫</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></span>
         <div class="issue-name">Second Amendment</div>
         <div class="issue-desc">Working to repeal unconstitutional age restrictions and carry prohibitions. Former Young Americans for Liberty president — a proven champion of gun rights.</div>
       </div>
       <div class="issue-card reveal">
-        <span class="issue-icon">⛪</span>
+        <span class="issue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M18 2H6a2 2 0 00-2 2v16l8-4 8 4V4a2 2 0 00-2-2z"/></svg></span>
         <div class="issue-name">Faith & Heritage</div>
         <div class="issue-desc">Defending our veterans' monuments, the Ten Commandments, and Western Christian heritage against radical leftist removal efforts across Florida.</div>
       </div>
@@ -657,7 +700,7 @@ section { position: relative; z-index: 1; }
         <div class="section-divider"></div>
 
         <div class="contact-item">
-          <div class="contact-icon">📍</div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div>
             <div class="contact-label">Campaign Headquarters</div>
             <div class="contact-value">10528 U.S. Highway 301 S<br>Hampton, Florida 32044</div>
@@ -665,7 +708,7 @@ section { position: relative; z-index: 1; }
         </div>
 
         <div class="contact-item">
-          <div class="contact-icon">📞</div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
           <div>
             <div class="contact-label">Phone</div>
             <div class="contact-value"><a href="tel:+13525148568">(352) 514-8568</a></div>
@@ -673,7 +716,7 @@ section { position: relative; z-index: 1; }
         </div>
 
         <div class="contact-item">
-          <div class="contact-icon">✉️</div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div>
             <div class="contact-label">Email</div>
             <div class="contact-value"><a href="mailto:marshallclaytonr@yahoo.com">marshallclaytonr@yahoo.com</a></div>
@@ -681,7 +724,7 @@ section { position: relative; z-index: 1; }
         </div>
 
         <div class="contact-item">
-          <div class="contact-icon">📘</div>
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="22" height="22"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
           <div>
             <div class="contact-label">Facebook</div>
             <div class="contact-value"><a href="https://www.facebook.com/profile.php?id=61572907880446" target="_blank">Follow on Facebook</a></div>
@@ -832,6 +875,14 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// ===== WHY TOGGLE =====
+function toggleWhy(btn) {
+  const fullText = btn.previousElementSibling;
+  const isExpanded = fullText.classList.toggle('expanded');
+  btn.classList.toggle('expanded');
+  btn.childNodes[0].textContent = isExpanded ? 'Read Less ' : 'Read More ';
+}
 
 // ===== COUNTER ANIMATION =====
 const counterObserver = new IntersectionObserver((entries) => {
